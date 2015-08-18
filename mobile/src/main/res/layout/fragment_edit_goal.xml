@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.chiljagossow.selfmanager.ui.edit.EditGoalFragment">
+
+    <EditText
+        android:id="@+id/goal_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Goal name"
+        android:textColorHint="@color/divider"
+        style="@style/Text"
+        android:padding="@dimen/padding_large"/>
+
+    <com.chiljagossow.selfmanager.view.RobotoTextView
+        android:id="@+id/end_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Due date"
+        android:layout_below="@+id/goal_name"
+        style="@style/Text.Subhead"
+        android:padding="@dimen/padding_large"/>
+
+    <com.chiljagossow.selfmanager.view.RobotoTextView
+        android:id="@+id/end_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/goal_name"
+        android:layout_toRightOf="@+id/end_text"
+        android:gravity="end"
+        android:layout_alignParentEnd="true"
+        android:onClick="onEndDatePickerCall"
+        android:text="tomorrow"
+        style="@style/Text.Subhead"
+        android:padding="@dimen/padding_large"/>
+
+    <EditText
+        android:id="@+id/motivation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/end_date"
+        android:hint="Motivation"
+        android:textColorHint="@color/divider"
+        style="@style/Text"
+        android:padding="@dimen/padding_large"/>
+
+    <EditText
+        android:id="@+id/definiton_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/motivation"
+        android:hint="Definition of Done"
+        android:textColorHint="@color/divider"
+        style="@style/Text"
+        android:padding="@dimen/padding_large"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/definiton_done"
+        android:id="@+id/image"
+        android:src="@drawable/empty_photo"
+        android:layout_margin="@dimen/margin_large"/>
+
+
+</RelativeLayout>

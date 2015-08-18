@@ -1,0 +1,62 @@
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_small"
+    android:layout_marginBottom="@dimen/margin_small"
+    android:layout_marginLeft="@dimen/margin_medium"
+    android:layout_marginRight="@dimen/margin_medium"
+    android:id="@+id/action_frame"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/event_data"
+        >
+        <com.chiljagossow.selfmanager.view.RobotoTextView
+            android:id="@+id/next_event_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Next event"
+            style="@style/Text.Subhead.White"
+            android:background="@color/primary"
+            android:padding="@dimen/padding_large"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_event"
+            android:id="@+id/event_button"
+            android:background="@drawable/button"
+            android:padding="@dimen/padding_small"
+            android:layout_margin="@dimen/margin_large"
+            android:layout_gravity="top|end"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/next_event_label"/>
+        <com.chiljagossow.selfmanager.view.RobotoTextView
+            android:id="@+id/event_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="title"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="@dimen/padding_large"
+            android:paddingRight="@dimen/padding_large"
+            android:paddingTop="@dimen/padding_large"
+            android:paddingBottom="@dimen/padding_small"
+            android:layout_below="@+id/next_event_label"
+            style="@style/Text.Subhead"/>
+        <com.chiljagossow.selfmanager.view.RobotoTextView
+            android:id="@+id/event_start_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="tomorrow"
+            android:layout_below="@+id/event_title"
+            android:paddingLeft="@dimen/padding_large"
+            android:paddingRight="@dimen/padding_large"
+            android:paddingTop="@dimen/padding_small"
+            android:paddingBottom="@dimen/padding_large"
+            style="@style/Text.Subhead"/>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/navigation_drawer_width"
+    android:layout_height="@dimen/navigation_drawer_header_height">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/image"
+        android:scaleType="centerCrop"/>
+
+    <com.chiljagossow.selfmanager.view.QuoteTextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_margin="16dp"
+        android:text="@string/inspiration"
+        style="@style/Text.Display2.White" />
+
+    </RelativeLayout>
+
+

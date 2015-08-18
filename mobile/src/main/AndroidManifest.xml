@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.chilja.selfmanager" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:screenOrientation="portrait">
+        <activity
+            android:name="org.chilja.selfmanager.presenter.edit.EditActivity"
+            android:parentActivityName="org.chilja.selfmanager.presenter.base.MainActivity"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeDark">
+        </activity>
+        <activity
+            android:name="org.chilja.selfmanager.presenter.edit.EditDetailActivity"
+            android:parentActivityName="org.chilja.selfmanager.presenter.items.DetailActivity"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeDark">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.chilja.selfmanager.presenter.items.DetailActivity"
+            android:parentActivityName="org.chilja.selfmanager.presenter.base.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeDark"
+            android:label="">
+        </activity>
+
+        <activity
+            android:name="org.chilja.selfmanager.presenter.base.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/AppThemeDark"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:authorities="org.chilja.selfmanager.providers.GoalProvider"
+            android:enabled="true"
+            android:name=".providers.GoalProvider"
+            android:permission="org.chilja.selfmanager.providers.GoalProvider.permission.ACCESS" />
+        <provider
+            android:authorities="org.chilja.selfmanager.providers.ActionProvider"
+            android:enabled="true"
+            android:name=".providers.ActionProvider"
+            android:permission="org.chilja.selfmanager.providers.ActionProvider.permission.ACCESS" />
+        <provider
+            android:authorities="org.chilja.selfmanager.providers.WaitItemProvider"
+            android:enabled="true"
+            android:name=".providers.WaitItemProvider"
+            android:permission="org.chilja.selfmanager.providers.WaitItemProvider.permission.ACCESS" />
+        <provider
+            android:authorities="org.chilja.selfmanager.providers.EventProvider"
+            android:enabled="true"
+            android:name=".providers.EventProvider"
+            android:permission="org.chilja.selfmanager.providers.EventProvider.permission.ACCESS" />
+        <provider
+            android:authorities="org.chilja.selfmanager.providers.NoteProvider"
+            android:enabled="true"
+            android:name=".providers.NoteProvider"
+            android:permission="org.chilja.selfmanager.providers.NoteProvider.permission.ACCESS" />
+    </application>
+
+</manifest>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+    <com.chiljagossow.selfmanager.view.RobotoTextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="name"
+        style="@style/Text.Subhead.Primary"
+        android:singleLine="true"/>
+    <com.chiljagossow.selfmanager.view.RobotoTextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:text="text"
+        style="@style/Text.Subhead"
+        android:singleLine="true"/>
+</RelativeLayout>

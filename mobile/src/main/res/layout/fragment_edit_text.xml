@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.chiljagossow.selfmanager.ui.edit.EditTextFragment"
+    android:background="@color/white">
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title"
+        android:textColorHint="@color/divider"
+        style="@style/Text"
+        android:singleLine="true"
+        android:padding="16dp" />
+
+
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Text"
+        android:textColorHint="@color/divider"
+        style="@style/Text"
+        android:padding="16dp"
+        android:layout_below="@+id/name"
+        android:gravity="top"/>
+
+</RelativeLayout>

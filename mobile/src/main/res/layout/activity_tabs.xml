@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A DrawerLayout is intended to be used as the top-level content view using match_parent for both width and height to consume the full space available. -->
+
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+    android:background="@color/primary_light">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:background="@color/primary" />
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"/>
+
+        <FrameLayout
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/placeholder_height"
+            android:background="@color/primary"
+            android:alpha="0.0"
+            android:elevation="@dimen/elevation_high"/>
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <com.chiljagossow.selfmanager.view.RobotoTextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Text.Display1.White"
+            android:text="title"
+            android:layout_gravity="center|top"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:translationY="@dimen/max_translation_title"
+            android:elevation="@dimen/elevation_high"/>
+
+        <FrameLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:translationY="@dimen/max_translation"
+            android:elevation="@dimen/elevation_high">
+
+        <com.chiljagossow.selfmanager.view.SlidingTabLayout
+            android:id="@+id/sliding_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            />
+        </FrameLayout>
+
+
+    </FrameLayout>
+

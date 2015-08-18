@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.chiljagossow.selfmanager.ui.edit.EditActionFragment">
+
+    <include layout="@layout/select_goal"
+        android:id="@+id/select_goal"/>
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Action name"
+        android:textColorHint="@color/divider"
+        style="@style/Text"
+        android:padding="16dp"
+        android:layout_below="@+id/select_goal"/>
+
+    <com.chiljagossow.selfmanager.view.RobotoTextView
+        android:id="@+id/end_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Due date"
+        android:layout_below="@+id/name"
+        style="@style/Text.Subhead"
+        android:padding="16dp"/>
+
+    <com.chiljagossow.selfmanager.view.RobotoTextView
+        android:id="@+id/end_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_toRightOf="@+id/end_text"
+        android:gravity="end"
+        android:layout_alignParentEnd="true"
+        android:onClick="onEndDatePickerCall"
+        android:text="tomorrow"
+        style="@style/Text.Subhead"
+        android:padding="16dp"/>
+
+
+</RelativeLayout>
