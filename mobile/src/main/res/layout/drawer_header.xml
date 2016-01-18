@@ -9,7 +9,7 @@
         android:id="@+id/image"
         android:scaleType="centerCrop"/>
 
-    <com.chiljagossow.selfmanager.view.QuoteTextView
+    <org.chilja.selfmanager.view.QuoteTextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"

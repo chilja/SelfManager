@@ -34,7 +34,7 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
 
-        <com.chiljagossow.selfmanager.view.RobotoTextView
+        <org.chilja.selfmanager.view.RobotoTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/event_data"
         >
-        <com.chiljagossow.selfmanager.view.RobotoTextView
+        <org.chilja.selfmanager.view.RobotoTextView
             android:id="@+id/next_event_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             android:layout_gravity="top|end"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/next_event_label"/>
-        <com.chiljagossow.selfmanager.view.RobotoTextView
+        <org.chilja.selfmanager.view.RobotoTextView
             android:id="@+id/event_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:paddingBottom="@dimen/padding_small"
             android:layout_below="@+id/next_event_label"
             style="@style/Text.Subhead"/>
-        <com.chiljagossow.selfmanager.view.RobotoTextView
+        <org.chilja.selfmanager.view.RobotoTextView
             android:id="@+id/event_start_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
