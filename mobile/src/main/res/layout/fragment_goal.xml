@@ -23,6 +23,7 @@
         android:scrollbars="vertical"
         android:layout_weight="1"
         />
+
     <org.chilja.selfmanager.view.QuoteTextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/inspiration_height"

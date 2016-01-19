@@ -50,6 +50,7 @@
         android:background="@color/background"
         android:layout_below="@+id/goal" />
 
+
 </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
