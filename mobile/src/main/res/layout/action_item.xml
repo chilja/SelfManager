@@ -16,7 +16,7 @@
     <view
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        class="com.chiljagossow.selfmanager.view.RobotoTextView"
+        class="org.chilja.selfmanager.view.RobotoTextView"
         android:id="@+id/due_date"
         android:text="end date"
         style="@style/Text.Caption.White"
@@ -37,7 +37,7 @@
         android:id="@+id/goal_image"
         android:scaleType="centerCrop"/>
 
-    <com.chiljagossow.selfmanager.view.RobotoTextView
+    <org.chilja.selfmanager.view.RobotoTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_small"
@@ -51,7 +51,7 @@
 
 
 
-    <com.chiljagossow.selfmanager.view.RobotoTextView
+    <org.chilja.selfmanager.view.RobotoTextView
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_small"

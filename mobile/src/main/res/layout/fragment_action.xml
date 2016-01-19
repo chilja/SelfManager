@@ -18,7 +18,7 @@
         android:background="@android:color/transparent">
     </android.support.v7.widget.RecyclerView>
 
-    <com.chiljagossow.selfmanager.view.QuoteTextView
+    <org.chilja.selfmanager.view.QuoteTextView
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/primary_dark"

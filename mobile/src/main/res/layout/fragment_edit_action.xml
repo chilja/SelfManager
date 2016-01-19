@@ -18,7 +18,7 @@
         android:padding="16dp"
         android:layout_below="@+id/select_goal"/>
 
-    <com.chiljagossow.selfmanager.view.RobotoTextView
+    <org.chilja.selfmanager.view.RobotoTextView
         android:id="@+id/end_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         style="@style/Text.Subhead"
         android:padding="16dp"/>
 
-    <com.chiljagossow.selfmanager.view.RobotoTextView
+    <org.chilja.selfmanager.view.RobotoTextView
         android:id="@+id/end_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
