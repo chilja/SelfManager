@@ -25,24 +25,25 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
+
 import org.chilja.selfmanager.R;
+import org.chilja.selfmanager.db.DatabaseInteractionListener;
 import org.chilja.selfmanager.model.Action;
-import org.chilja.selfmanager.presenter.base.BaseActivity;
-import org.chilja.selfmanager.presenter.base.SlidingHeaderHelper;
-import org.chilja.selfmanager.resolvers.ActionResolver;
-import org.chilja.selfmanager.resolvers.CalendarEventResolver;
 import org.chilja.selfmanager.model.Event;
 import org.chilja.selfmanager.model.Goal;
 import org.chilja.selfmanager.model.Note;
 import org.chilja.selfmanager.model.WaitItem;
+import org.chilja.selfmanager.presenter.base.BaseActivity;
+import org.chilja.selfmanager.presenter.base.BaseFragment;
+import org.chilja.selfmanager.presenter.base.SlidingHeaderHelper;
+import org.chilja.selfmanager.resolvers.ActionResolver;
+import org.chilja.selfmanager.resolvers.CalendarEventResolver;
 import org.chilja.selfmanager.resolvers.EventResolver;
 import org.chilja.selfmanager.resolvers.GoalResolver;
 import org.chilja.selfmanager.resolvers.NoteResolver;
-import org.chilja.selfmanager.db.DatabaseInteractionListener;
 import org.chilja.selfmanager.resolvers.WaitItemResolver;
-import org.chilja.selfmanager.presenter.base.BaseFragment;
 import org.chilja.selfmanager.util.BitmapUtility;
-import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -108,6 +109,10 @@ public class GoalDetailFragment extends BaseFragment implements
   private ArrayList<Note> mNotes;
 
 
+  public GoalDetailFragment() {
+    // Required empty public constructor
+  }
+
   /**
    * Use this factory method to create a new instance of
    * this fragment using the provided parameters.
@@ -123,8 +128,32 @@ public class GoalDetailFragment extends BaseFragment implements
     return fragment;
   }
 
-  public GoalDetailFragment() {
-    // Required empty public constructor
+  /****
+   * Method for Setting the Height of the ListView dynamically.
+   * *** Hack to fix the issue of not showing all the items of the ListView
+   * *** when placed inside a ScrollView
+   ****/
+  public static void setListViewHeightBasedOnChildren(ListView listView) {
+    ListAdapter listAdapter = listView.getAdapter();
+    if (listAdapter == null) {
+      return;
+    }
+
+    int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(),
+            View.MeasureSpec.UNSPECIFIED);
+    int totalHeight = 0;
+    View view = null;
+    for (int i = 0; i < listAdapter.getCount(); i++) {
+      view = listAdapter.getView(i, view, listView);
+      view.setLayoutParams(
+              new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
+      view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+      totalHeight += view.getMeasuredHeight();
+    }
+    ViewGroup.LayoutParams params = listView.getLayoutParams();
+    params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+    listView.setLayoutParams(params);
+    listView.requestLayout();
   }
 
   @Override
@@ -142,7 +171,6 @@ public class GoalDetailFragment extends BaseFragment implements
     gdm.getGoal(this, mGoalId);
 
     super.onCreate(savedInstanceState);
-
   }
 
   @Override
@@ -188,30 +216,6 @@ public class GoalDetailFragment extends BaseFragment implements
     mScrollView = (ScrollView) view.findViewById(R.id.scroll_view);
 
     return view;
-  }
-
-  /**** Method for Setting the Height of the ListView dynamically.
-   **** Hack to fix the issue of not showing all the items of the ListView
-   **** when placed inside a ScrollView  ****/
-  public static void setListViewHeightBasedOnChildren(ListView listView) {
-    ListAdapter listAdapter = listView.getAdapter();
-    if (listAdapter == null)
-      return;
-
-    int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(),
-            View.MeasureSpec.UNSPECIFIED);
-    int totalHeight = 0;
-    View view = null;
-    for (int i = 0; i < listAdapter.getCount(); i++) {
-      view = listAdapter.getView(i, view, listView);
-      view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
-      view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-      totalHeight += view.getMeasuredHeight();
-    }
-    ViewGroup.LayoutParams params = listView.getLayoutParams();
-    params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-    listView.setLayoutParams(params);
-    listView.requestLayout();
   }
 
   @Override
@@ -302,8 +306,8 @@ public class GoalDetailFragment extends BaseFragment implements
     if (mIsAttached && mIsResumed && goal != null) {
       if (goal.getImage() != null) {
         BitmapUtility.loadBitmap(getActivity(), new File(goal.getImage()), mImageView,
-                mDisplayWidth, mImageHeight,
-                new View[]{mColoredView, ((BaseActivity) getActivity()).getToolbar()});
+                mDisplayWidth, mImageHeight, mColoredView,
+                ((BaseActivity) getActivity()).getToolbar());
         float ratio = .75F;
         mImageHeight = (int) (mDisplayWidth * ratio);
       }
@@ -465,6 +469,10 @@ public class GoalDetailFragment extends BaseFragment implements
     return true;
   }
 
+  interface OnFragmentInteractionListener {
+    void onEditNote(Note note);
+  }
+
   class NotesArrayAdapter extends BaseAdapter {
     ArrayList<Note> mNotes;
     private Context mContext;
@@ -472,11 +480,6 @@ public class GoalDetailFragment extends BaseFragment implements
     public NotesArrayAdapter(Context context, ArrayList<Note> notes) {
       mNotes = notes;
       mContext = context;
-    }
-
-    private class ViewHolder {
-      private TextView nameView;
-      private TextView textView;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -526,9 +529,10 @@ public class GoalDetailFragment extends BaseFragment implements
       return mNotes.get(position);
     }
 
-  }
+    private class ViewHolder {
+      private TextView nameView;
+      private TextView textView;
+    }
 
-  interface OnFragmentInteractionListener{
-    void onEditNote(Note note);
   }
 }
