@@ -38,7 +38,7 @@
     <view
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        class="org.chilja.selfmanager.view.RobotoTextView"
+        class="com.chiljagossow.selfmanager.view.RobotoTextView"
         android:id="@+id/due_date"
         android:text="end date"
         style="@style/Text.Caption.White"
@@ -49,7 +49,7 @@
         <view
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            class="org.chilja.selfmanager.view.RobotoTextView"
+            class="com.chiljagossow.selfmanager.view.RobotoTextView"
             android:id="@+id/goal_name"
             android:text="name"
             style="@style/Text.Title.White"

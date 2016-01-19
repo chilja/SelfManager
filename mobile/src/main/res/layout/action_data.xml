@@ -17,7 +17,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         >
 
-    <org.chilja.selfmanager.view.RobotoTextView
+    <com.chiljagossow.selfmanager.view.RobotoTextView
         android:id="@+id/next_action_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <org.chilja.selfmanager.view.RobotoTextView
+        <com.chiljagossow.selfmanager.view.RobotoTextView
             android:id="@+id/next_action"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:layout_toLeftOf="@+id/next_action_due_date"
             android:layout_alignParentLeft="true"/>
 
-        <org.chilja.selfmanager.view.RobotoTextView
+        <com.chiljagossow.selfmanager.view.RobotoTextView
             android:id="@+id/next_action_due_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

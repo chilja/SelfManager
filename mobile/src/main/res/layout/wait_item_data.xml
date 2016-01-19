@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <org.chilja.selfmanager.view.RobotoTextView
+    <com.chiljagossow.selfmanager.view.RobotoTextView
         android:id="@+id/next_wait_item_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <org.chilja.selfmanager.view.RobotoTextView
+        <com.chiljagossow.selfmanager.view.RobotoTextView
             android:id="@+id/wait_item_due_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             android:paddingTop="@dimen/padding_small"
             android:paddingBottom="@dimen/padding_small"/>
 
-        <org.chilja.selfmanager.view.RobotoTextView
+        <com.chiljagossow.selfmanager.view.RobotoTextView
             android:id="@+id/wait_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             android:paddingTop="@dimen/padding_small"
             android:paddingBottom="@dimen/padding_small"/>
 
-        <org.chilja.selfmanager.view.RobotoTextView
+        <com.chiljagossow.selfmanager.view.RobotoTextView
             android:id="@+id/responsible_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
             android:paddingLeft="@dimen/padding_large"
             style="@style/Text.Subhead"/>
 
-        <org.chilja.selfmanager.view.RobotoTextView
+        <com.chiljagossow.selfmanager.view.RobotoTextView
             android:id="@+id/responsible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
             android:layout_toRightOf="@+id/responsible_label"
             style="@style/Text.Subhead"/>
 
-        <org.chilja.selfmanager.view.RobotoTextView
+        <com.chiljagossow.selfmanager.view.RobotoTextView
             android:id="@+id/request_date_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
             android:layout_below="@+id/responsible_label"
             style="@style/Text.Subhead"/>
 
-        <org.chilja.selfmanager.view.RobotoTextView
+        <com.chiljagossow.selfmanager.view.RobotoTextView
             android:id="@+id/request_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

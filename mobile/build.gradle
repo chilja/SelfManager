@@ -50,6 +50,7 @@ dependencies {
                 exclude group: 'org.apache.httpcomponents', module: 'httpclient'
             }
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    wearApp project(':wear')
     compile 'com.google.android.gms:play-services:7.5.0'
     compile 'com.android.support:appcompat-v7:22.2.0'
 //     compile 'com.squareup.picasso:picasso:2.4.0'

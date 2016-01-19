@@ -16,7 +16,7 @@
         android:paddingLeft="16dp"
         android:src="@drawable/ic_action"/>
 
-    <org.chilja.selfmanager.view.RobotoTextView
+    <com.chiljagossow.selfmanager.view.RobotoTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="12dp"

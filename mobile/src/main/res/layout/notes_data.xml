@@ -16,7 +16,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:padding="@dimen/padding_large">
 
-        <org.chilja.selfmanager.view.RobotoTextView
+        <com.chiljagossow.selfmanager.view.RobotoTextView
             android:id="@+id/notes_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

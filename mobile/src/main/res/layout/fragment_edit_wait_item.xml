@@ -18,7 +18,7 @@
         android:padding="16dp"
         android:layout_below="@+id/select_goal"/>
 
-    <org.chilja.selfmanager.view.RobotoTextView
+    <com.chiljagossow.selfmanager.view.RobotoTextView
         android:id="@+id/due_date_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         style="@style/Text.Subhead"
         android:padding="16dp"/>
 
-    <org.chilja.selfmanager.view.RobotoTextView
+    <com.chiljagossow.selfmanager.view.RobotoTextView
         android:id="@+id/due_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
         style="@style/Text"
         android:padding="16dp"/>
 
-    <org.chilja.selfmanager.view.RobotoTextView
+    <com.chiljagossow.selfmanager.view.RobotoTextView
         android:id="@+id/request_date_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
         style="@style/Text.Subhead"
         android:padding="16dp"/>
 
-    <org.chilja.selfmanager.view.RobotoTextView
+    <com.chiljagossow.selfmanager.view.RobotoTextView
         android:id="@+id/request_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
