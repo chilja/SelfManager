@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:id="@+id/goal_item"
+    android:longClickable="true"
+    android:layout_marginBottom="@dimen/margin_small"
+    android:background="@color/primary"
+    android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/image"
+            android:scaleType="centerCrop" />
+
+    <RelativeLayout
+        android:id="@+id/colored_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="bottom">
+
+        <view
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="@dimen/padding_large"
+            android:paddingEnd="@dimen/padding_large"
+            android:paddingTop="@dimen/padding_large"
+            android:gravity="bottom"
+            class="org.chilja.selfmanager.view.RobotoTextView"
+            android:id="@+id/due_date"
+            android:text="end date"
+            style="@style/Text.Caption.White"
+             />
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:id="@+id/next_item_icon"
+            android:scaleType="centerInside"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/ic_caution"
+            android:visibility="gone" />
+
+        <view
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_below="@+id/due_date"
+            android:paddingStart="@dimen/padding_large"
+            android:paddingEnd="@dimen/padding_large"
+            android:paddingBottom="@dimen/padding_large"
+            android:gravity="top"
+            android:singleLine="true"
+            android:id="@+id/goal_name"
+            android:text="name"
+            class="org.chilja.selfmanager.view.RobotoTextView"
+            style="@style/Text.Title.White" />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

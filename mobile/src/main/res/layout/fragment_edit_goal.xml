@@ -3,18 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.chiljagossow.selfmanager.ui.edit.EditGoalFragment">
+    tools:context="org.chilja.selfmanager.ui.edit.EditGoalFragment">
 
     <EditText
         android:id="@+id/goal_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Goal name"
+        android:hint="Name"
         android:textColorHint="@color/divider"
         style="@style/Text"
         android:padding="@dimen/padding_large"/>
 
-    <com.chiljagossow.selfmanager.view.RobotoTextView
+    <org.chilja.selfmanager.view.RobotoTextView
         android:id="@+id/end_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         style="@style/Text.Subhead"
         android:padding="@dimen/padding_large"/>
 
-    <com.chiljagossow.selfmanager.view.RobotoTextView
+    <org.chilja.selfmanager.view.RobotoTextView
         android:id="@+id/end_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
         android:padding="@dimen/padding_large"/>
 
     <EditText
-        android:id="@+id/definiton_done"
+        android:id="@+id/definition_done"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/motivation"
@@ -59,10 +59,11 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_below="@+id/definiton_done"
+        android:layout_below="@+id/definition_done"
         android:id="@+id/image"
         android:src="@drawable/empty_photo"
-        android:layout_margin="@dimen/margin_large"/>
+        android:padding="@dimen/padding_large"
+        android:layout_alignParentBottom="true"/>
 
 
 </RelativeLayout>

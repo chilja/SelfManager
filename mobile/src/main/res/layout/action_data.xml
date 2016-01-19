@@ -17,7 +17,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         >
 
-    <com.chiljagossow.selfmanager.view.RobotoTextView
+    <org.chilja.selfmanager.view.RobotoTextView
         android:id="@+id/next_action_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,36 +27,7 @@
         android:paddingRight="@dimen/padding_large"
         style="@style/Text.Header" />
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <include layout="@layout/action"/>
 
-        <com.chiljagossow.selfmanager.view.RobotoTextView
-            android:id="@+id/next_action"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Do something"
-            style="@style/Text.Subhead"
-            android:paddingLeft="@dimen/padding_large"
-            android:paddingRight="@dimen/padding_large"
-            android:paddingTop="@dimen/padding_small"
-            android:paddingBottom="@dimen/padding_large"
-            android:layout_toLeftOf="@+id/next_action_due_date"
-            android:layout_alignParentLeft="true"/>
-
-        <com.chiljagossow.selfmanager.view.RobotoTextView
-            android:id="@+id/next_action_due_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="date"
-            android:layout_alignParentRight="true"
-            style="@style/Text.Subhead"
-            android:paddingLeft="@dimen/padding_large"
-            android:paddingRight="@dimen/padding_large"
-            android:paddingTop="@dimen/padding_small"
-            android:paddingBottom="@dimen/padding_large" />
-
-    </RelativeLayout>
     </LinearLayout>
-    </android.support.v7.widget.CardView>
+</android.support.v7.widget.CardView>

@@ -8,9 +8,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import org.chilja.selfmanager.R;
+import org.chilja.selfmanager.model.Mission;
 import org.chilja.selfmanager.presenter.edit.EditActivity;
 import org.chilja.selfmanager.presenter.items.ActionFragment;
 import org.chilja.selfmanager.presenter.items.DetailActivity;
@@ -28,10 +30,10 @@ public class MainActivity extends BaseActivity implements
 
   public static final String TAG = "MainActivity";
 
-  public static final int ACTION = 0;
-  public static final int GOALS = 2;
-  public static final int WAIT_ITEMS = 1;
-  public static final int MISSION = 3;
+  public static final int ACTION = 2;
+  public static final int GOALS = 1;
+  public static final int WAIT_ITEMS = 3;
+  public static final int MISSION = 0;
 
   private static final int SIZE = 4;
 
@@ -80,11 +82,8 @@ public class MainActivity extends BaseActivity implements
 
     mMissionFragment = (MissionFragment) getSupportFragmentManager().findFragmentByTag(MissionFragment.TAG);
     if (mMissionFragment == null) {
-      SharedPreferences sharedPref = getSharedPreferences(
-              getString(R.string.preference_chief_aim_key), Context.MODE_PRIVATE);
-      String defaultValue = getResources().getString(R.string.aim);
-      String value = sharedPref.getString(getString(R.string.saved_chief_aim), defaultValue);
-      mMissionFragment = MissionFragment.newInstance(value, "My Mission");
+      Mission mission = new Mission(getApplicationContext());
+      mMissionFragment = MissionFragment.newInstance(mission, getString(R.string.title_mission));
     }
   }
 
@@ -121,7 +120,6 @@ public class MainActivity extends BaseActivity implements
     mToolbar.setNavigationIcon(R.drawable.ic_drawer);
 
   }
-
 
   @Override
   protected void onDestroy() {
@@ -178,24 +176,6 @@ public class MainActivity extends BaseActivity implements
     }
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-//    if (mNavigationDrawerFragment != null && mNavigationDrawerFragment.isDrawerOpen()) {
-//      return true;
-//    }
-    switch (mVisibleFragmentTAG) {
-      case ActionFragment.TAG:
-        getMenuInflater().inflate(R.menu.actions, menu);
-        return true;
-      case GoalFragment.TAG:
-        getMenuInflater().inflate(R.menu.goals, menu);
-        return true;
-      case MissionFragment.TAG:
-        getMenuInflater().inflate(R.menu.mission, menu);
-        return true;
-    }
-    return super.onCreateOptionsMenu(menu);
-  }
 
   @Override
   public void onNavigationDrawerItemSelected(int position) {
@@ -233,6 +213,10 @@ public class MainActivity extends BaseActivity implements
 
   public void onAddWaitItemClick(View view) {
     startEditActivity(EditActivity.NEW_WAIT_ITEM);
+  }
+
+  public void onEditMissionClick(View view) {
+    startEditActivity(EditActivity.MISSION);
   }
 
   @Override

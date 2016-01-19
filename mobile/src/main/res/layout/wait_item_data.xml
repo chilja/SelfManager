@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <com.chiljagossow.selfmanager.view.RobotoTextView
+    <org.chilja.selfmanager.view.RobotoTextView
         android:id="@+id/next_wait_item_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,73 +26,6 @@
         android:paddingEnd="@dimen/padding_large"
         style="@style/Text.Header" />
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.chiljagossow.selfmanager.view.RobotoTextView
-            android:id="@+id/wait_item_due_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="date"
-            style="@style/Text.Subhead"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:paddingLeft="@dimen/padding_large"
-            android:paddingRight="@dimen/padding_large"
-            android:paddingTop="@dimen/padding_small"
-            android:paddingBottom="@dimen/padding_small"/>
-
-        <com.chiljagossow.selfmanager.view.RobotoTextView
-            android:id="@+id/wait_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Waiting"
-            style="@style/Text.Subhead"
-            android:paddingLeft="@dimen/padding_large"
-            android:paddingRight="@dimen/padding_large"
-            android:paddingTop="@dimen/padding_small"
-            android:paddingBottom="@dimen/padding_small"/>
-
-        <com.chiljagossow.selfmanager.view.RobotoTextView
-            android:id="@+id/responsible_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="from "
-            android:layout_below="@+id/wait_item"
-            android:paddingLeft="@dimen/padding_large"
-            style="@style/Text.Subhead"/>
-
-        <com.chiljagossow.selfmanager.view.RobotoTextView
-            android:id="@+id/responsible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="responsible"
-            android:layout_below="@+id/wait_item"
-            android:layout_toRightOf="@+id/responsible_label"
-            style="@style/Text.Subhead"/>
-
-        <com.chiljagossow.selfmanager.view.RobotoTextView
-            android:id="@+id/request_date_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="requested "
-            android:paddingLeft="@dimen/padding_large"
-            android:paddingBottom="@dimen/padding_large"
-            android:layout_below="@+id/responsible_label"
-            style="@style/Text.Subhead"/>
-
-        <com.chiljagossow.selfmanager.view.RobotoTextView
-            android:id="@+id/request_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="yesterday"
-            android:layout_below="@+id/responsible_label"
-            android:layout_toRightOf="@+id/request_date_label"
-            android:paddingBottom="@dimen/padding_large"
-            style="@style/Text.Subhead"/>
-
-        </RelativeLayout>
+    <include layout="@layout/wait"/>
     </LinearLayout>
 </android.support.v7.widget.CardView>

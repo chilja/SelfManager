@@ -206,6 +206,7 @@ public class GoalFragment extends BaseFragment
   }
 
   public class ImageAdapter extends BaseAdapter {
+    private static final int sLayout = R.layout.goal_item_2;
     private Context mContext;
     private int mWidth;
     private ArrayList<Goal> mItems;
@@ -237,9 +238,10 @@ public class GoalFragment extends BaseFragment
     }
 
     public View getView(Goal goal, Context context, int width) {
-      final View view = View.inflate(context, R.layout.goal_item, null);
+      final View view = View.inflate(context, sLayout, null);
       ImageView imageView = (ImageView) view.findViewById(R.id.image);
-      goal.loadBitmap(context, imageView, width, width);
+      View coloredView = view.findViewById(R.id.colored_view);
+      goal.loadBitmap(context, imageView, coloredView, width, width*2/3);
       TextView goalName =  (TextView) view.findViewById(R.id.goal_name);
       goalName.setText(goal.getName());
       TextView dueDate =  (TextView) view.findViewById(R.id.due_date);

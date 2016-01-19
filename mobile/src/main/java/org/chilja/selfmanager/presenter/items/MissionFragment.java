@@ -9,6 +9,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.chilja.selfmanager.R;
+import org.chilja.selfmanager.model.Mission;
 import org.chilja.selfmanager.presenter.base.BaseFragment;
 
 
@@ -30,11 +31,12 @@ public class MissionFragment extends BaseFragment {
    * Returns a new instance of this fragment for the given section
    * number.
    */
-  public static MissionFragment newInstance(String content, String title) {
+  public static MissionFragment newInstance(Mission mission, String title) {
     MissionFragment fragment = new MissionFragment();
     Bundle args = new Bundle();
-    args.putString(ARG_TEXT, content);
+    args.putString(ARG_TEXT, mission.getContent());
     fragment.setArguments(args);
+    fragment.setTitle(title);
     return fragment;
   }
 
@@ -79,7 +81,7 @@ public class MissionFragment extends BaseFragment {
 
   @Override
   public String getTitle() {
-    return "Mission statement";
+    return mTitle;
   }
 
   public int getScrollY() {

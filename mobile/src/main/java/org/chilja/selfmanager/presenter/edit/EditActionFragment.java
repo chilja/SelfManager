@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.chilja.selfmanager.R;
 import org.chilja.selfmanager.model.Action;
@@ -138,13 +139,22 @@ public class EditActionFragment extends EditItemFragment {
 
   @Override
   public void save(Context context) {
-    if (mAction !=null) {
+    if (checkObligatoryFields(context)) {
       mAction.setName(mName.getText().toString());
-      int id = ((Goal)mSpinner.getSelectedItem()).getId();
-      mAction.setGoalId(id);
+      Goal goal = (Goal)mSpinner.getSelectedItem();
+      if (goal != null)
+        mAction.setGoalId(goal.getId());
       mAction.save(context);
+      NavUtils.navigateUpFromSameTask(getActivity());
     }
-    NavUtils.navigateUpFromSameTask(getActivity());
+  }
+
+  private boolean checkObligatoryFields(Context context) {
+    if (mName.getText().toString().isEmpty()) {
+      Toast.makeText(context, "Please enter a name", Toast.LENGTH_SHORT).show();
+      return false;
+    }
+    return true;
   }
 
   @Override

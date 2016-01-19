@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/event"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_large"
+    android:longClickable="true"
+    android:background="@color/white">
+
+    <org.chilja.selfmanager.view.RobotoTextView
+        android:id="@+id/event_start_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="tomorrow"
+        style="@style/Text.Caption"/>
+
+    <org.chilja.selfmanager.view.RobotoTextView
+        android:id="@+id/event_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="title"
+        android:layout_below="@+id/event_start_date"
+        style="@style/Text.Subhead"/>
+
+</RelativeLayout>

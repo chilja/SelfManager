@@ -1,68 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="1dp"
+    android:id="@+id/lyt_container"
+    android:background="@color/background">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/action_item"
     android:background="@color/white">
 
-<RelativeLayout
-    android:id="@+id/item_view"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/padding_medium"
-    android:longClickable="true"
-    android:background="@color/primary_light">
-
-    <view
+    <include layout="@layout/action"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        class="com.chiljagossow.selfmanager.view.RobotoTextView"
-        android:id="@+id/due_date"
-        android:text="end date"
-        style="@style/Text.Caption.White"
-        android:layout_margin="@dimen/margin_small"
-        android:gravity="bottom" />
+        android:layout_toStartOf="@+id/goal"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"/>
 
-    <ImageView
-        android:id="@+id/button"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/ic_unchecked"
-        android:layout_below="@+id/due_date"/>
-
-    <ImageView
-        android:layout_width="74dp"
-        android:layout_height="74dp"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/goal_image"
-        android:scaleType="centerCrop"/>
-
-    <com.chiljagossow.selfmanager.view.RobotoTextView
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_small"
-        android:id="@+id/text"
-        android:text="action"
-        android:layout_toEndOf="@+id/button"
-        android:layout_toStartOf="@+id/goal_image"
-        android:layout_below="@+id/due_date"
-        android:maxLines="3"
-        style="@style/Text.Subhead.White"/>
-
-
-
-    <com.chiljagossow.selfmanager.view.RobotoTextView
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_small"
-        android:id="@+id/goal_name"
         android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/goal_image"
-        android:text="goal"
-        android:layout_below="@+id/text"
-        style="@style/Text.Caption.White"
-        android:singleLine="true"
-        android:gravity="end|bottom"/>
+        android:id="@+id/goal">
+
+        <ImageView
+            android:layout_width="@dimen/goal_image_width"
+            android:layout_height="@dimen/goal_image_width"
+            android:id="@+id/goal_image"
+            android:scaleType="centerCrop"
+            android:background="@color/white"
+            android:gravity="end"
+            android:layout_gravity="end" />
+
+        <com.chiljagossow.selfmanager.view.RobotoTextView
+            android:layout_width="@dimen/goal_image_width"
+            android:layout_height="wrap_content"
+            android:id="@+id/goal_name"
+            android:text="goal"
+            style="@style/Text.Caption"
+            android:singleLine="true"
+            android:gravity="end|bottom"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="@dimen/margin_large"/>
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/background"
+        android:layout_below="@+id/goal" />
 
 </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:weightSum="3"
+        android:height="@dimen/goal_image_width"
+        android:paddingLeft="@dimen/padding_large"
+        android:paddingRight="@dimen/padding_large">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/txt_delete"
+            android:gravity="center_vertical"
+            android:text="@string/deleted"
+            android:clickable="false"
+            android:layout_weight="2"
+            android:hapticFeedbackEnabled="true"
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/txt_undo"
+            android:text="@string/undo"
+            android:clickable="false"
+            android:layout_weight="1"
+            android:textColor="@color/accent"/>
+
+    </LinearLayout>
+
 </FrameLayout>

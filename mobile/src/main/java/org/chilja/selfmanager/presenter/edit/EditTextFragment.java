@@ -23,7 +23,6 @@ public class EditTextFragment extends EditFragment {
   public static final String TAG = "EditTextFragment";
 
   private EditText mEditText;
-  private EditText mName;
 
   protected Editable mEditableItem;
 
@@ -63,7 +62,6 @@ public class EditTextFragment extends EditFragment {
     // Inflate the layout for this fragment
     View view = inflater.inflate(R.layout.fragment_edit_text, container, false);
     mEditText = (EditText) view.findViewById(R.id.edit_text);
-    mName = (EditText) view.findViewById(R.id.name);
     return view;
   }
 
@@ -75,7 +73,6 @@ public class EditTextFragment extends EditFragment {
 
   public void save(Context context) {
     mEditableItem.setContent(mEditText.getText().toString());
-    mEditableItem.setTitle(mName.getText().toString());
     mEditableItem.saveToDb(context);
     NavUtils.navigateUpFromSameTask(getActivity());
   }

@@ -24,36 +24,51 @@
                 android:background="@android:color/transparent"
                 android:id="@+id/placeholder"/>
 
-            <org.chilja.selfmanager.view.RobotoTextView
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/due_date"
-                android:text="end date"
-                style="@style/Text.Subhead.White"
-                android:gravity="center"
-                android:background="@color/primary"
-                android:paddingTop="@dimen/padding_large"/>
+                android:background="@color/white">
 
-            <org.chilja.selfmanager.view.RobotoTextView
+            <LinearLayout
+                android:id="@+id/colored_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/primary"
-                android:id="@+id/goal_name"
-                android:text="name"
-                style="@style/Text.Display1.White"
-                android:gravity="center"
-                android:paddingBottom="@dimen/padding_large"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/primary">
+
+                <org.chilja.selfmanager.view.RobotoTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/due_date"
+                    android:text="end date"
+                    style="@style/Text.Subhead.White"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/padding_large"/>
+
+                <org.chilja.selfmanager.view.RobotoTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/goal_name"
+                    android:text="name"
+                    style="@style/Text.Display1.White"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/padding_large"/>
+            </LinearLayout>
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:background="@color/background">
+                android:background="@color/background"
+                android:paddingTop="@dimen/padding_small"
+                android:paddingBottom="@dimen/padding_small">
+                <include layout="@layout/goal_detail"/>
                 <include layout="@layout/action_data"/>
                 <include layout="@layout/wait_item_data"/>
                 <include layout="@layout/event_data"/>
                 <include layout="@layout/notes_data"/>
-                <include layout="@layout/goal_detail"/>
+
             </LinearLayout>
         </LinearLayout>
 

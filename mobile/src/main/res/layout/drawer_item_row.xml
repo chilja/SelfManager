@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
-    android:orientation="horizontal"
-    android:theme="@style/AppTheme">
-
+    android:background="@color/white"
+    android:theme="@style/AppTheme"
+    android:paddingTop="@dimen/padding_large"
+    android:paddingStart="@dimen/padding_large"
+    android:paddingEnd="@dimen/padding_large">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:id="@+id/rowIcon"
-        android:paddingLeft="16dp"
-        android:src="@drawable/ic_action"/>
+        android:layout_marginRight="@dimen/margin_large"
+        android:src="@drawable/ic_action" />
 
-    <com.chiljagossow.selfmanager.view.RobotoTextView
+    <org.chilja.selfmanager.view.RobotoTextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="12dp"
-        android:paddingTop="4dp"
+        android:layout_height="32dp"
+        android:layout_toEndOf="@+id/rowIcon"
+        android:layout_alignBaseline="@+id/rowIcon"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
         android:text="item"
         style="@style/Text.Menu"
         android:id="@+id/rowText" />
 
-</LinearLayout>
+</RelativeLayout>

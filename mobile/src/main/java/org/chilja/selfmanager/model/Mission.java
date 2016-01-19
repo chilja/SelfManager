@@ -11,20 +11,22 @@ import org.chilja.selfmanager.presenter.edit.Editable;
  */
 public class Mission implements Editable {
 
-  SharedPreferences mSharedPref;
+  private SharedPreferences mSharedPref;
   private String mKey;
   private String mContent;
+  private String mDefaultContent;
+
 
   public Mission(Context context) {
     mSharedPref = context.getSharedPreferences(
             context.getString(R.string.preference_chief_aim_key), Context.MODE_PRIVATE);
     mKey = context.getString(R.string.saved_chief_aim);
+    mDefaultContent = context.getResources().getString(R.string.aim);
   }
 
   @Override
   public String getContent() {
-    String defaultValue = "my chief aim in life";
-    mContent = mSharedPref.getString(mKey, defaultValue);
+    mContent = mSharedPref.getString(mKey, mDefaultContent);
     return mContent;
   }
 

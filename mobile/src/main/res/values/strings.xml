@@ -28,8 +28,11 @@
     <string name="title_edit_wait_item">Edit wait Item</string>
 
     <string name="title_edit_mission">Edit mission statement</string>
+    <string name="title_mission">Mission statement</string>
 
     <string name="goal_deleted">Goal %1$s has been deleted.</string>
+    <string name="deleted">deleted</string>
+    <string name="undo">undo</string>
 
 
 </resources>

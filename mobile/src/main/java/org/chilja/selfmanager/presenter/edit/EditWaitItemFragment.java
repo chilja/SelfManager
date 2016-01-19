@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.chilja.selfmanager.R;
+import org.chilja.selfmanager.model.Goal;
 import org.chilja.selfmanager.model.WaitItem;
 
 import java.util.GregorianCalendar;
@@ -137,15 +138,27 @@ public class EditWaitItemFragment extends EditItemFragment {
 
   @Override
   public void save(Context context) {
-    String name = mName.getText().toString();
-    if (name != null &&  name != "") {
+    if (checkObligatoryFields(context)) {
       mWaitItem.setResponsible(mResponsible.getText().toString());
-      mWaitItem.setName(name);
+      mWaitItem.setName(mName.getText().toString());
+      Goal goal = (Goal)mSpinner.getSelectedItem();
+      if (goal != null)
+        mWaitItem.setGoalId(goal.getId());
       mWaitItem.save(context);
       NavUtils.navigateUpFromSameTask(getActivity());
-    } else {
-      Toast.makeText(context, "Please enter a name", Toast.LENGTH_SHORT);
     }
+  }
+
+  private boolean checkObligatoryFields(Context context) {
+    if (mName.getText().toString().isEmpty()) {
+      Toast.makeText(context, "Please enter a name", Toast.LENGTH_SHORT).show();
+      return false;
+    }
+    if (mResponsible.getText().toString().isEmpty()) {
+      Toast.makeText(context, "Please enter a responsible", Toast.LENGTH_SHORT).show();
+      return false;
+    }
+    return true;
   }
 
   @Override

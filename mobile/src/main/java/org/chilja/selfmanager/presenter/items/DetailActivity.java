@@ -43,8 +43,7 @@ public class DetailActivity extends BaseActivity implements GoalDetailFragment.O
     setContentView(R.layout.activity_detail);
 
     setUp();
-    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
+    setUpToolbar();
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

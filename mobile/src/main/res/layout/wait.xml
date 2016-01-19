@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/wait"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_large"
+    android:longClickable="true"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/wait_button"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_unchecked"
+        android:layout_centerVertical="true"
+        android:tint="@color/primary" />
+
+    <org.chilja.selfmanager.view.RobotoTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/wait_due_date"
+        android:text="end date"
+        style="@style/Text.Caption"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_toEndOf="@+id/wait_button"/>
+
+    <org.chilja.selfmanager.view.RobotoTextView
+        android:id="@+id/wait_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_toEndOf="@+id/wait_button"
+        android:layout_below="@+id/wait_due_date"
+        android:singleLine="true"
+        android:text="waiting"
+        style="@style/Text.Subhead"/>
+
+    <org.chilja.selfmanager.view.RobotoTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_small"
+        android:id="@+id/request_date"
+        android:text="request date"
+        style="@style/Text.Caption"
+        android:layout_below="@+id/wait_name"
+        android:layout_toEndOf="@+id/wait_button" />
+
+    <org.chilja.selfmanager.view.RobotoTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_small"
+        android:id="@+id/responsible"
+        android:text="responsible"
+        android:singleLine="true"
+        android:layout_toEndOf="@+id/request_date"
+        android:layout_below="@+id/wait_name"
+        style="@style/Text.Caption"/>
+
+</RelativeLayout>

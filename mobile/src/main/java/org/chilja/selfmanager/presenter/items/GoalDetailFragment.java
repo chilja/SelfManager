@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -28,6 +27,7 @@ import android.widget.Toast;
 
 import org.chilja.selfmanager.R;
 import org.chilja.selfmanager.model.Action;
+import org.chilja.selfmanager.presenter.base.BaseActivity;
 import org.chilja.selfmanager.presenter.base.SlidingHeaderHelper;
 import org.chilja.selfmanager.resolvers.ActionResolver;
 import org.chilja.selfmanager.resolvers.CalendarEventResolver;
@@ -69,11 +69,15 @@ public class GoalDetailFragment extends BaseFragment implements
 
   private OnFragmentInteractionListener mListener;
 
+  private View mPlaceholder;
+  private ScrollView mScrollView;
+
   private int mGoalId;
   private Goal mGoal;
   private RelativeLayout mGoalItemView;
   private ImageView mImageView;
   private int mImageHeight;
+  private View mColoredView;
 
   private TextView mGoalName;
   private TextView mMotivation;
@@ -82,23 +86,19 @@ public class GoalDetailFragment extends BaseFragment implements
 
 
   //action
-  private View mNextActionData;
-  private TextView mDueDateAction;
-  private TextView mActionName;
+  private View mActionData;
   private ArrayList<Action> mActions;
+  private ActionViewHolder mActionView;
 
   //wait item
   private View mWaitItemData;
   private ArrayList<WaitItem> mWaitItems;
-  private TextView mDueDateWaitItem;
-  private TextView mWaitItemName;
-  private TextView mResponsible;
-  private TextView mRequestDate;
+  private WaitItemViewHolder mWaitItemView;
 
   // event
   private ArrayList<Event> mEvents;
   private View mEventData;
-  private ImageButton mEventButton;
+  private View mEvent;
   private TextView mEventTitle;
   private TextView mEventStartDate;
 
@@ -151,10 +151,11 @@ public class GoalDetailFragment extends BaseFragment implements
     View view = inflater.inflate(R.layout.fragment_goal_detail, container, false);
     mGoalItemView = (RelativeLayout)view.findViewById(R.id.goal_item);
     mImageView = (ImageView) view.findViewById(R.id.image);
+    mColoredView = view.findViewById(R.id.colored_view);
     mGoalName =  (TextView) view.findViewById(R.id.goal_name);
     mDueDate =  (TextView) view.findViewById(R.id.due_date);
     mMotivation =  (TextView) view.findViewById(R.id.motivation);
-    mDefinitionDone =  (TextView) view.findViewById(R.id.definiton_done);
+    mDefinitionDone =  (TextView) view.findViewById(R.id.definition_done);
 
     FloatingActionButton actionButton = (FloatingActionButton) view.findViewById(R.id.new_action_button);
     actionButton.setSize(FloatingActionButton.SIZE_MINI);
@@ -165,34 +166,26 @@ public class GoalDetailFragment extends BaseFragment implements
     FloatingActionButton waitItemButton = (FloatingActionButton) view.findViewById(R.id.new_wait_button);
     waitItemButton.setSize(FloatingActionButton.SIZE_MINI);
 
-    mNextActionData = view.findViewById(R.id.next_action_data);
-    mActionName =  (TextView) view.findViewById(R.id.next_action);
-    mDueDateAction =  (TextView) view.findViewById(R.id.next_action_due_date);
-    mRequestDate =  (TextView) view.findViewById(R.id.request_date);
-    mResponsible = (TextView) view.findViewById(R.id.responsible);
+    mActionData = view.findViewById(R.id.next_action_data);
+    mActionView = new ActionViewHolder(mActionData, getActivity());
+    mActionView.hideGoalImage();
+    mActionView.hideGoalName();
 
     mWaitItemData = view.findViewById(R.id.wait_item_data);
-    mWaitItemName  =  (TextView) view.findViewById(R.id.wait_item);
-    mDueDateWaitItem =  (TextView) view.findViewById(R.id.wait_item_due_date);
+    mWaitItemView = new WaitItemViewHolder(mWaitItemData, getActivity());
+    mWaitItemView.hideGoalImage();
+    mWaitItemView.hideGoalName();
 
     mEventData = view.findViewById(R.id.event_data);
-    mEventButton = (ImageButton) view.findViewById(R.id.event_button);
+    mEvent = view.findViewById(R.id.event);
     mEventTitle  =  (TextView) view.findViewById(R.id.event_title);
     mEventStartDate =  (TextView) view.findViewById(R.id.event_start_date);
 
     mNoteData = view.findViewById(R.id.note_data);
     mNotesList = (ListView) view.findViewById(R.id.notes_list);
 
-    View placeholder = view.findViewById(R.id.placeholder);
-
-    float ratio = .75F;
-    mImageHeight = (int) (mDisplayWidth * ratio);
-    mGoalItemView.setLayoutParams(new FrameLayout.LayoutParams(mDisplayWidth, mImageHeight));
-    placeholder.setLayoutParams(new LinearLayout.LayoutParams(mDisplayWidth, mImageHeight));
-
-    ImageView headerImage = (ImageView) view.findViewById(R.id.image);
-    ScrollView scrollView = (ScrollView) view.findViewById(R.id.scroll_view);
-    new SlidingHeaderHelper(-mImageHeight, 0).setUp(null, headerImage, scrollView);
+    mPlaceholder = view.findViewById(R.id.placeholder);
+    mScrollView = (ScrollView) view.findViewById(R.id.scroll_view);
 
     return view;
   }
@@ -230,6 +223,7 @@ public class GoalDetailFragment extends BaseFragment implements
       throw new ClassCastException(
               activity.toString() + " must implement OnFragmentInteractionListener");
     }
+    mImageHeight = (int) activity.getResources().getDimension(R.dimen.toolbar_height);
   }
 
   @Override
@@ -256,6 +250,20 @@ public class GoalDetailFragment extends BaseFragment implements
     SharedPreferences.Editor editor = preferences.edit();
     editor.putInt(ARG_GOAL_ID, mGoalId);
     editor.commit();
+    if (mActions != null) {
+      for (Action action : mActions) {
+        if (action.isDone()) {
+          action.delete(getActivity());
+        }
+      }
+    }
+    if (mWaitItems != null) {
+      for (WaitItem item : mWaitItems) {
+        if (item.isDone()) {
+          item.delete(getActivity());
+        }
+      }
+    }
   }
 
   @Override
@@ -292,11 +300,17 @@ public class GoalDetailFragment extends BaseFragment implements
 
   private void setGoalData(Goal goal) {
     if (mIsAttached && mIsResumed && goal != null) {
-
       if (goal.getImage() != null) {
         BitmapUtility.loadBitmap(getActivity(), new File(goal.getImage()), mImageView,
-                mDisplayWidth, mImageHeight);
+                mDisplayWidth, mImageHeight,
+                new View[]{mColoredView, ((BaseActivity) getActivity()).getToolbar()});
+        float ratio = .75F;
+        mImageHeight = (int) (mDisplayWidth * ratio);
       }
+
+      mGoalItemView.setLayoutParams(new FrameLayout.LayoutParams(mDisplayWidth, mImageHeight));
+      mPlaceholder.setLayoutParams(new LinearLayout.LayoutParams(mDisplayWidth, mImageHeight));
+      new SlidingHeaderHelper(-mImageHeight, 0).setUp(null, mImageView, mScrollView);
 
       mGoalName.setText(goal.getName());
       mMotivation.setText(goal.getMotivation());
@@ -322,11 +336,10 @@ public class GoalDetailFragment extends BaseFragment implements
         action = actions.get(0);
       }
       if (action != null) {
-        mActionName.setText(action.getName());
-        mDueDateAction.setText(action.getDisplayDate(action.getDueDate()));
-        mNextActionData.setVisibility(View.VISIBLE);
+        mActionView.setAction(action);
+        mActionData.setVisibility(View.VISIBLE);
       } else {
-        mNextActionData.setVisibility(View.GONE);
+        mActionData.setVisibility(View.GONE);
       }
     }
   }
@@ -348,10 +361,7 @@ public class GoalDetailFragment extends BaseFragment implements
         item = items.get(0);
       }
       if (item != null) {
-        mWaitItemName.setText(item.getName());
-        mDueDateWaitItem.setText(item.getDisplayDate(item.getDueDate()));
-        mResponsible.setText(item.getResponsible());
-        mRequestDate.setText(item.getDisplayDate(item.getRequestDate()));
+        mWaitItemView.setWaitItem(item);
         mWaitItemData.setVisibility(View.VISIBLE);
       } else {
         mWaitItemData.setVisibility(View.GONE);
@@ -381,7 +391,7 @@ public class GoalDetailFragment extends BaseFragment implements
         if (endDate != null && new GregorianCalendar().getTime().before(endDate.getTime())) {
           final long eventID = event.getEventId();
           mEventData.setVisibility(View.VISIBLE);
-          mEventButton.setOnClickListener(new View.OnClickListener() {
+          mEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
               Uri uri = ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, eventID);
@@ -451,7 +461,7 @@ public class GoalDetailFragment extends BaseFragment implements
     }
     Resources res = getResources();
     String text = String.format(res.getString(R.string.goal_deleted), mGoal.getName());
-    Toast.makeText(context, text, Toast.LENGTH_SHORT);
+    Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
     return true;
   }
 

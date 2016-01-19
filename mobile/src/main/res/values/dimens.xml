@@ -15,6 +15,7 @@
     <dimen name="translation_tabs">226dp</dimen>
 
     <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="inspiration_height">56dp</dimen>
     <dimen name="status_bar_height">24dp</dimen>
     <dimen name="tab_height">48dp</dimen>
     <dimen name="avatar_diameter">40dp</dimen>
@@ -28,8 +29,12 @@
     <dimen name="elevation_low">2dp</dimen>
     <dimen name="elevation_high">4dp</dimen>
 
+    <dimen name="margin_button">28dp</dimen>
+
     <dimen name="diameter">56dp</dimen>
 
     <dimen name="goal_detail_column">104dp</dimen>
+
+    <dimen name="goal_image_width">88dp</dimen>
 
 </resources>

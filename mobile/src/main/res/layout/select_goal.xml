@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/primary_light">
+    android:theme="@style/AppTheme"
+    android:paddingTop="@dimen/padding_large"
+    android:paddingBottom="@dimen/padding_large"
+    android:paddingEnd="@dimen/padding_large">
 
     <Spinner
-
         android:id="@+id/goals_spinner"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:spinnerMode="dropdown"
         android:prompt="@string/select_goal"
+        style="@style/Text.Subhead"/>
 
-        />
-
-</RelativeLayout>
+</FrameLayout>

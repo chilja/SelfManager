@@ -140,7 +140,7 @@ public class NavigationDrawerFragment extends Fragment implements DrawerAdapter.
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+    View view = inflater.inflate(R.layout.fragment_drawer, container, false);
 
     mRecyclerView = (RecyclerView) view.findViewById(R.id.list);
     mRecyclerView.setHasFixedSize(true);

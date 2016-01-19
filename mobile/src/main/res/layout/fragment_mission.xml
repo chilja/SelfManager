@@ -2,20 +2,57 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scroll_view">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/content"
-        android:paddingStart="56dp"
-        android:paddingEnd="@dimen/margin_large"
-        android:paddingTop="@dimen/margin_large"
-        android:paddingBottom="@dimen/margin_large"
-        style="@style/Text.Subhead"
-        />
-    </ScrollView>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/scroll_view"
+                android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/content"
+                android:paddingStart="56dp"
+                android:paddingEnd="@dimen/margin_large"
+                android:paddingTop="@dimen/margin_large"
+                android:paddingBottom="@dimen/margin_large"
+                style="@style/Text.Body"
+                />
+            </ScrollView>
+
+            <org.chilja.selfmanager.view.QuoteTextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/inspiration_height"
+                android:background="@color/primary_dark"
+                android:id="@+id/inspiration"
+                android:gravity="center"
+                android:paddingTop="@dimen/margin_medium"
+                android:paddingStart="@dimen/margin_medium"
+                android:paddingBottom="@dimen/margin_medium"
+                android:paddingEnd="78dp"
+                style="@style/Text.Inspiration"
+                android:elevation="@dimen/elevation_high"
+                android:text="@string/inspiration_mission"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+    <ImageButton
+        android:id="@+id/button_save"
+        android:layout_width="@dimen/diameter"
+        android:layout_height="@dimen/diameter"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="@dimen/margin_button"
+        android:layout_marginBottom="@dimen/margin_button"
+        android:background="@drawable/oval_ripple"
+        android:src="@drawable/ic_edit"
+        android:scaleType="centerInside"
+        android:onClick="onEditMissionClick"
+        android:elevation="@dimen/elevation_high" />
 
 </FrameLayout>

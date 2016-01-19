@@ -94,7 +94,7 @@ public class EditGoalFragment extends EditFragment implements GoalResolver.GoalC
     View view = inflater.inflate(R.layout.fragment_edit_goal, container, false);
     mGoalName = (EditText) view.findViewById(R.id.goal_name);
     mMotivation = (EditText) view.findViewById(R.id.motivation);
-    mDefinitionDone = (EditText) view.findViewById(R.id.definiton_done);
+    mDefinitionDone = (EditText) view.findViewById(R.id.definition_done);
     mImageView = (ImageView) view.findViewById(R.id.image);
     mImageView.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -116,8 +116,11 @@ public class EditGoalFragment extends EditFragment implements GoalResolver.GoalC
       mTitle = getArguments().getString(ARG_TITLE);
       mGoalId = getArguments().getInt(ARG_GOAL_ID);
       if (mGoalId != 0) {
-        GoalResolver gdm = new GoalResolver(activity);
-        gdm.getGoal(this, mGoalId);
+        new GoalResolver(activity).getGoal(this, mGoalId);
+      }
+      else {
+        mGoal = new Goal();
+        setGoalData(mGoal);
       }
     }
   }
@@ -214,15 +217,15 @@ public class EditGoalFragment extends EditFragment implements GoalResolver.GoalC
 
   private boolean checkObligatoryFields(Context context) {
     if (mGoalName.getText().toString().isEmpty()) {
-      Toast.makeText(context, "Please enter a name", Toast.LENGTH_SHORT);
+      Toast.makeText(context, "Please enter a name", Toast.LENGTH_SHORT).show();
       return false;
     }
     if (mMotivation.getText().toString().isEmpty()) {
-      Toast.makeText(context, "Please enter a motivation", Toast.LENGTH_SHORT);
+      Toast.makeText(context, "Please enter a motivation", Toast.LENGTH_SHORT).show();
       return false;
     }
     if (mDefinitionDone.getText().toString().isEmpty()){
-      Toast.makeText(context, "Please enter a definition of done", Toast.LENGTH_SHORT);
+      Toast.makeText(context, "Please enter a definition of done", Toast.LENGTH_SHORT).show();
       return false;
     }
     return true;

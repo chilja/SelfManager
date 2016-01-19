@@ -13,9 +13,13 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.v7.graphics.Palette;
 import android.util.Log;
 import android.util.LruCache;
+import android.view.View;
 import android.widget.ImageView;
+
+import org.chilja.selfmanager.R;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -73,19 +77,31 @@ public class BitmapUtility {
    */
   private static class BitmapFromFileTask extends AsyncTask<File, Void, Bitmap> {
 
-    private final ImageView imageView;
+    private final ImageView mImageView;
     private File mFile;
     private final int reqWidth;
     private final int reqHeight;
-    private final Context context;
+    private final Context mContext;
+    private final View[] mColoredViews;
+
 
     private BitmapFromFileTask(Context context, ImageView imageView, int reqWidth,
                                     int reqHeight) {
-      this.imageView = imageView;
+      this.mImageView = imageView;
       this.reqWidth = reqWidth;
       this.reqHeight = reqHeight;
-      this.context = context;
+      this.mContext = context;
+      this.mColoredViews = null;
       tasks.add(this);
+    }
+
+    private BitmapFromFileTask(Context context, ImageView imageView, int reqWidth,
+                               int reqHeight, View... coloredViews) {
+      this.mImageView = imageView;
+      this.reqWidth = reqWidth;
+      this.reqHeight = reqHeight;
+      this.mContext = context;
+      this.mColoredViews = coloredViews;
     }
 
     @Override
@@ -96,11 +112,12 @@ public class BitmapUtility {
 
     @Override
     protected void onPostExecute(Bitmap bitmap) {
-      if (imageView != null) {
-        imageView.setImageBitmap(bitmap);
+      if (mImageView != null) {
+        mImageView.setImageBitmap(bitmap);
       }
       if (bitmap != null) {
         addBitmapToMemoryCache(mFile.getAbsolutePath().toString() + "W" + reqWidth + "H" + reqHeight, bitmap);
+        colorBackground(bitmap, mColoredViews);
       }
       tasks.remove(this);
     }
@@ -245,7 +262,7 @@ public class BitmapUtility {
    * @param resId
    *          resource id of the bitmap to be loaded
    * @param imageView
-   *          imageView the bitmap will be attached to
+   *          mImageView the bitmap will be attached to
    * @param reqWidth
    *          width in pixels
    * @param reqHeight
@@ -254,7 +271,7 @@ public class BitmapUtility {
   public static void loadBitmap(Context context, Integer resId, ImageView imageView,
                                 int reqWidth, int reqHeight) {
     // check cache
-    // use width and height as part of key to enforce relaoding when resizing
+    // use width and height as part of key to enforce reloading when resizing
     final Bitmap bitmap = getBitmapFromMemCache(resId.toString() + "W" + reqWidth + "H" + reqHeight);
     if (bitmap != null) {
       imageView.setImageBitmap(bitmap);
@@ -274,7 +291,7 @@ public class BitmapUtility {
    * @param file
    *          resource id of the bitmap to be loaded
    * @param imageView
-   *          imageView the bitmap will be attached to
+   *          mImageView the bitmap will be attached to
    * @param reqWidth
    *          width in pixels
    * @param reqHeight
@@ -295,30 +312,41 @@ public class BitmapUtility {
     task.execute(file);
   }
 
-  /**
-   * Loads bitmap from URL and transforms the shape into a circle.
-   *
-   * @param bitmapUrl
-   *          URL of the bitmap
-   * @param imageView
-   *          imageView the bitmap will be attached to
-   * @param diameter
-   *          diameter in pixels of the resulting circle
-   */
-  public static void loadBitmap(Context context, String bitmapUrl, ImageView imageView, int diameter) {
-    if ((imageView != null) && (bitmapUrl != null)) {
-      // check cache
-      final Bitmap bitmap = getBitmapFromMemCache(bitmapUrl.toString());
-      if (bitmap != null) {
-        imageView.setImageBitmap(getCircleBitmap(bitmap, diameter));
-        return;
+  public static void loadBitmap(Context context, File file, ImageView imageView,
+                                int reqWidth, int reqHeight, View... colorViews) {
+    // check cache
+    // use width and height as part of key to enforce relaoding when resizing
+    final Bitmap bitmap = getBitmapFromMemCache(file.getAbsolutePath().toString() + "W" + reqWidth + "H" + reqHeight);
+    if (bitmap != null) {
+      imageView.setImageBitmap(bitmap);
+      colorBackground(bitmap, colorViews);
+      return;
+    }
+    final BitmapFromFileTask task = new BitmapFromFileTask(context, imageView, reqWidth,
+            reqHeight, colorViews);
+
+    task.execute(file);
+  }
+
+  private static void colorBackground(Bitmap bitmap, View[] colorViews) {
+    Palette palette = Palette.generate(bitmap);
+    if (colorViews != null) {
+      for (int i = 0; i < colorViews.length; i++) {
+        colorBackgroundDark(colorViews[i], palette);
       }
-      final BitmapFromUrlTask task = new BitmapFromUrlTask(imageView, diameter);
-      final AsyncDrawable asyncDrawable = new AsyncDrawable(context.getResources(), null, task);
-      imageView.setImageDrawable(asyncDrawable);
-      task.execute(bitmapUrl);
     }
   }
+
+  private static void colorBackgroundDark(View view, Palette palette) {
+    int color = palette.getDarkVibrantColor(R.color.primary);
+    view.setBackgroundColor(color);
+  }
+
+  private static void colorBackground(View view, Palette palette) {
+    int color = palette.getVibrantColor(R.color.primary);
+    view.setBackgroundColor(color);
+  }
+
 
   /**
    * Cancels all background tasks that haven't completed. Should be called from

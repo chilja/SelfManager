@@ -82,6 +82,7 @@
             android:enabled="true"
             android:name=".providers.NoteProvider"
             android:permission="org.chilja.selfmanager.providers.NoteProvider.permission.ACCESS" />
+
     </application>
 
 </manifest>

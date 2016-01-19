@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/action"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_large"
+    android:longClickable="true"
+    android:background="@color/white">
+
+
+    <ImageView
+        android:id="@+id/action_button"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_unchecked"
+        android:layout_centerVertical="true"
+        android:tint="@color/primary" />
+
+    <org.chilja.selfmanager.view.RobotoTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/action_due_date"
+        android:text="end date"
+        style="@style/Text.Caption"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_toEndOf="@+id/action_button"/>
+
+
+    <org.chilja.selfmanager.view.RobotoTextView
+        android:id="@+id/action_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_toEndOf="@+id/action_button"
+        android:layout_below="@+id/action_due_date"
+        android:maxLines="3"
+        android:text="action"
+        style="@style/Text.Subhead"/>
+
+</RelativeLayout>

@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -113,6 +114,10 @@ public class Goal extends Item {
     mId = source.readInt();
   }
 
+  public Goal(){
+    super();
+  }
+
   public Goal(String name){
     super(name);
   }
@@ -161,6 +166,12 @@ public class Goal extends Item {
   public void loadBitmap(Context context, ImageView imageView, int width, int height) {
     if (mImage != null) {
       BitmapUtility.loadBitmap(context, new File(mImage), imageView, width, height);
+    }
+  }
+
+  public void loadBitmap(Context context, ImageView imageView, View coloredView, int width, int height) {
+    if (mImage != null) {
+      BitmapUtility.loadBitmap(context, new File(mImage), imageView, width, height, coloredView);
     }
   }
 

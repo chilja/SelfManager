@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <com.chiljagossow.selfmanager.view.RobotoTextView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/goal_name"
-        android:singleLine="true"
-        style="@style/Text.Subhead.White"
-        android:text="goal"
-        android:padding="@dimen/padding_medium"
-    />
+<org.chilja.selfmanager.view.RobotoTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/goal_name"
+    android:singleLine="true"
+    android:background="@color/white"
+    style="@style/Text.Subhead"
+    android:text="goal"
+    android:paddingTop="@dimen/padding_medium"
+    android:paddingBottom="@dimen/padding_medium"
+    android:paddingStart="@dimen/padding_large"
+    android:paddingEnd="@dimen/padding_large"
+/>

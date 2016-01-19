@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-    android:background="@color/primary_light">
+        android:background="@color/primary_light">
 
         <ImageView
             android:id="@+id/image"
@@ -14,7 +14,6 @@
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
             android:background="@color/primary" />
-
 
         <android.support.v4.view.ViewPager
             android:id="@+id/pager"
@@ -34,7 +33,7 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
 
-        <com.chiljagossow.selfmanager.view.RobotoTextView
+        <org.chilja.selfmanager.view.RobotoTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +52,7 @@
             android:translationY="@dimen/max_translation"
             android:elevation="@dimen/elevation_high">
 
-        <com.chiljagossow.selfmanager.view.SlidingTabLayout
+        <org.chilja.selfmanager.view.SlidingTabLayout
             android:id="@+id/sliding_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

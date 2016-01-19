@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:id="@+id/cv">
 
-    <com.chiljagossow.selfmanager.view.RobotoTextView
+    <org.chilja.selfmanager.view.RobotoTextView
         android:id="@+id/number"
         android:layout_width="32dp"
         android:layout_height="32dp"
@@ -18,7 +18,7 @@
         android:background="@drawable/oval"
         style="@style/Text.Title.White" />
 
-    <com.chiljagossow.selfmanager.view.RobotoTextView
+    <org.chilja.selfmanager.view.RobotoTextView
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

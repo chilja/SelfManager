@@ -13,6 +13,10 @@ import org.chilja.selfmanager.presenter.edit.EditActivity;
 public abstract class BaseActivity extends AppCompatActivity {
 
 
+  public Toolbar getToolbar() {
+    return mToolbar;
+  }
+
   /**
    * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
    */
@@ -29,7 +33,6 @@ public abstract class BaseActivity extends AppCompatActivity {
   public Toolbar setUpToolbar() {
     mToolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(mToolbar);
-//    getSupportActionBar().setDisplayShowTitleEnabled(false);
     return mToolbar;
   }
 
@@ -47,35 +50,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     startActivity(intent);
   }
 
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
 
-    //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-      return true;
-    }
-
-    if (id == R.id.action_edit_mission) {
-      startEditActivity(EditActivity.MISSION);
-      return true;
-    }
-
-    if (id == R.id.action_new_goal) {
-      startEditActivity(EditActivity.NEW_GOAL);
-      return true;
-    }
-
-    if (id == R.id.action_new_action) {
-      startEditActivity(EditActivity.NEW_ACTION);
-      return true;
-    }
-
-    return super.onOptionsItemSelected(item);
-  }
 
   public void startEditActivity(int type) {
     final Intent intent = new Intent(this, EditActivity.class);
